@@ -1,0 +1,8 @@
+{
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ],
+  "name": "Elite English AI",
+  "description": "Premium English immersion with Secure Identity Persistence powered by Gemini Live API"
+}

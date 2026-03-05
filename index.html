@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Elite English AI | Hyper-Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sat: env(safe-area-inset-top);
+            --sar: env(safe-area-inset-right);
+            --sab: env(safe-area-inset-bottom);
+            --sal: env(safe-area-inset-left);
+            --neon-blue: #06b6d4;
+            --neon-purple: #a855f7;
+            --brand-start: #22d3ee;
+            --brand-mid: #a855f7;
+            --brand-end: #f472b6;
+            --bg-main: #000;
+            --text-main: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --glass-bg: rgba(15, 23, 42, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        body.theme-light {
+            --bg-main: #ffffff; 
+            --text-main: #000000;
+            --text-muted: rgba(0, 0, 0, 0.6);
+            --brand-start: #a855f7; 
+            --brand-mid: #f97316;
+            --brand-end: #ea580c;
+            --glass-bg: rgba(255, 255, 255, 0.8); 
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+            background: #ffffff !important;
+            background-attachment: fixed !important;
+        }
+
+        body.theme-light .text-white:not(.brand-gradient):not(.keep-white) { color: #000000 !important; }
+        body.theme-light .text-white\/95:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.95) !important; }
+        body.theme-light .text-white\/90:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.9) !important; }
+        body.theme-light .text-white\/85:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.85) !important; }
+        body.theme-light .text-white\/80:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.8) !important; }
+        body.theme-light .text-white\/75:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.75) !important; }
+        body.theme-light .text-white\/70:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.7) !important; }
+        body.theme-light .text-white\/65:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.65) !important; }
+        body.theme-light .text-white\/60:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.6) !important; }
+        body.theme-light .text-white\/55:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.55) !important; }
+        body.theme-light .text-white\/50:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.5) !important; }
+        body.theme-light .text-white\/45:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.45) !important; }
+        body.theme-light .text-white\/40:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.4) !important; }
+        body.theme-light .text-white\/35:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.35) !important; }
+        body.theme-light .text-white\/30:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.3) !important; }
+        body.theme-light .text-white\/25:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.25) !important; }
+        body.theme-light .text-white\/20:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.2) !important; }
+        body.theme-light .text-white\/15:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.15) !important; }
+        body.theme-light .text-white\/10:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.1) !important; }
+        body.theme-light .text-white\/5:not(.brand-gradient):not(.keep-white) { color: rgba(0, 0, 0, 0.05) !important; }
+        
+        body.theme-light .text-slate-400 { color: rgba(0, 0, 0, 0.6) !important; }
+        body.theme-light .text-slate-300 { color: rgba(0, 0, 0, 0.7) !important; }
+        body.theme-light .text-slate-200 { color: rgba(0, 0, 0, 0.8) !important; }
+        body.theme-light .text-slate-100 { color: rgba(0, 0, 0, 0.9) !important; }
+        
+        body.theme-light .bg-white:not(.keep-white) { background-color: #000000 !important; color: #ffffff !important; }
+        body.theme-light .bg-white:not(.keep-white) * { color: #ffffff !important; }
+        
+        body.theme-light .bg-white\/5 { background-color: rgba(0, 0, 0, 0.05) !important; }
+        body.theme-light .bg-white\/10 { background-color: rgba(0, 0, 0, 0.1) !important; }
+        body.theme-light .bg-slate-900\/50 { background-color: rgba(0, 0, 0, 0.05) !important; }
+        body.theme-light .bg-slate-900\/40 { background-color: rgba(0, 0, 0, 0.04) !important; }
+        body.theme-light .bg-slate-950\/80 { background-color: rgba(255, 255, 255, 0.8) !important; }
+        body.theme-light .bg-slate-950\/95 { background-color: rgba(255, 255, 255, 0.95) !important; }
+        body.theme-light .bg-slate-950 { background-color: #f8fafc !important; }
+        body.theme-light .border-white\/5 { border-color: rgba(0, 0, 0, 0.05) !important; }
+        body.theme-light .border-white\/10 { border-color: rgba(0, 0, 0, 0.1) !important; }
+        body.theme-light .border-white\/20 { border-color: rgba(0, 0, 0, 0.15) !important; }
+        body.theme-light .keep-white { color: #ffffff !important; }
+        body.theme-light .keep-white .text-white { color: #ffffff !important; }
+        body.theme-light .keep-white .bg-white { background-color: #ffffff !important; }
+        body.theme-light .keep-white.bg-slate-950 { background-color: #020617 !important; }
+        body.theme-light .keep-white.bg-indigo-500 { background-color: #6366f1 !important; }
+        body.theme-light .keep-white.bg-cyan-500 { background-color: #06b6d4 !important; }
+
+        /* Accent Overrides for Light Mode */
+        body.theme-light .text-cyan-400 { color: #a855f7 !important; } /* Purple */
+        body.theme-light .text-indigo-400 { color: #f97316 !important; } /* Orange */
+        body.theme-light .text-emerald-400 { color: #ea580c !important; } /* Deep Orange */
+        body.theme-light .text-purple-400 { color: #7c3aed !important; } /* Deep Purple */
+        body.theme-light .text-orange-400 { color: #f97316 !important; }
+        
+        body.theme-light .bg-cyan-500 { background-color: #a855f7 !important; }
+        body.theme-light .bg-cyan-500\/10 { background-color: rgba(168, 85, 247, 0.1) !important; }
+        body.theme-light .bg-cyan-500\/20 { background-color: rgba(168, 85, 247, 0.2) !important; }
+        
+        body.theme-light .bg-indigo-500 { background-color: #f97316 !important; }
+        body.theme-light .bg-indigo-500\/10 { background-color: rgba(249, 115, 22, 0.1) !important; }
+        body.theme-light .bg-indigo-500\/20 { background-color: rgba(249, 115, 22, 0.2) !important; }
+        
+        body.theme-light .bg-emerald-500 { background-color: #ea580c !important; }
+        body.theme-light .bg-emerald-500\/10 { background-color: rgba(234, 88, 12, 0.1) !important; }
+        
+        body.theme-light .bg-purple-500 { background-color: #7c3aed !important; }
+        body.theme-light .bg-orange-500 { background-color: #f97316 !important; }
+
+        body.theme-light .border-cyan-500\/20 { border-color: rgba(168, 85, 247, 0.2) !important; }
+        body.theme-light .border-indigo-500\/20 { border-color: rgba(249, 115, 22, 0.2) !important; }
+        body.theme-light .border-emerald-500\/20 { border-color: rgba(234, 88, 12, 0.2) !important; }
+        
+        body.theme-light .shadow-cyan-500\/20 { shadow: 0 0 20px rgba(168, 85, 247, 0.2) !important; }
+        body.theme-light h1, 
+        body.theme-light h2, 
+        body.theme-light h3, 
+        body.theme-light h4, 
+        body.theme-light h5, 
+        body.theme-light h6 { 
+            color: #000000;
+        }
+        
+        body.theme-light .luxury-text:not(.brand-gradient) {
+            color: #000000 !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: var(--text-main);
+            min-height: 100vh;
+            transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+        }
+
+        .brand-gradient {
+            background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.theme-light .brand-gradient {
+            background: linear-gradient(135deg, #a855f7 0%, #f97316 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            color: transparent !important;
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            background: radial-gradient(circle at center, #020617 0%, #000 100%);
+            transition: opacity 1s ease;
+        }
+
+        body.theme-light #starfield {
+            opacity: 0.1;
+            mix-blend-mode: overlay;
+            background: transparent !important;
+        }
+
+        #root {
+            position: relative;
+            z-index: 10;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(50px) saturate(250%);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--card-shadow);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .luxury-text { font-family: 'Playfair Display', serif; }
+        .mono-text { font-family: 'JetBrains Mono', monospace; }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div id="root"></div>
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let numStars = 600;
+        let speed = 4;
+        let targetSpeed = 4;
+        let centerX, centerY;
+        let focalLength;
+
+        window.setStarSpeed = (newSpeed) => { targetSpeed = newSpeed; };
+
+        function initStars() {
+            centerX = canvas.width / 2;
+            centerY = canvas.height / 2;
+            focalLength = canvas.width;
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width - centerX,
+                    y: Math.random() * canvas.height - centerY,
+                    z: Math.random() * canvas.width,
+                    color: ['#ffffff', '#67e8f9', '#fef08a', '#d8b4fe'][Math.floor(Math.random() * 4)],
+                    px: 0, py: 0
+                });
+            }
+        }
+
+        function draw() {
+            speed += (targetSpeed - speed) * 0.1;
+            const isLight = document.body.classList.contains('theme-light');
+            if (!isLight) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            } else {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+
+            for (let i = 0; i < numStars; i++) {
+                let s = stars[i];
+                let oldX = (s.x / s.z) * focalLength + centerX;
+                let oldY = (s.y / s.z) * focalLength + centerY;
+                s.z -= speed;
+                if (s.z <= 0) {
+                    s.z = canvas.width;
+                    s.x = Math.random() * canvas.width - centerX;
+                    s.y = Math.random() * canvas.height - centerY;
+                    oldX = (s.x / s.z) * focalLength + centerX;
+                    oldY = (s.y / s.z) * focalLength + centerY;
+                }
+                let x = (s.x / s.z) * focalLength + centerX;
+                let y = (s.y / s.z) * focalLength + centerY;
+                let opacity = 1 - (s.z / canvas.width);
+                ctx.beginPath();
+                ctx.moveTo(oldX, oldY);
+                ctx.lineTo(x, y);
+                ctx.strokeStyle = isLight ? '#000000' : s.color;
+                ctx.lineWidth = (1 - s.z / canvas.width) * (speed > 10 ? 4 : 2);
+                ctx.globalAlpha = isLight ? opacity * 0.1 : opacity;
+                ctx.stroke();
+            }
+            ctx.globalAlpha = 1;
+            requestAnimationFrame(draw);
+        }
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        draw();
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
